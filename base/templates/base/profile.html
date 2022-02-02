@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProfilePage</title>
+</head>
+<style>
+    .grid-cointainer{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        
+    }
+
+</style>
+<body>
+    <div class='grid-cointainer'>   
+        {% if request.user.id == user.id %}
+            <div>
+                
+                <h1 style="font-size: 40;">{{user.username}}</h1>
+                <p>Add<a href="{% url 'addpassword'%}">Password</a></p>
+                <p>Back to <a href="{% url 'home' %}">home</a></p>
+                <form action="" method="GET">
+                    {% csrf_token %}
+                    <input name="q" placeholder="Search for password">
+                </form>
+
+                <h1>Website Name</h1> 
+                {% for password in passwords %}
+                <div class="website-name">
+                    <a href="{% url 'viewpass' user.id password.websitenames %}">{{password.websitenames}}----------</a><a href="{% url 'editpass' request.user.id password.websitenames %}">Edit------------</a><a href="{% url 'deletepass' password.websitenames %}">Delete</a>
+                </div>
+                {% endfor %}
+
+
+
+            </div>
+        {% else %}
+            <div>
+                <p style="font-size: 80px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">THIS IS NOT YOUR ACCOUNT</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

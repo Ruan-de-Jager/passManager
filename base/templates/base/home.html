@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+</head>
+
+<style>
+    
+#left-container{
+    position: fixed;
+    background-color: #00203FFF;   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -21px;
+    margin-left: -8px;
+    width: 50%;
+    height: 1000px;
+    
+}
+#right-container{
+    position: fixed;
+    background-color: #ADEFD1FF;   
+    display: flex ;
+    justify-content: center;
+    margin-top: -70px;
+    margin-left: 832px;
+    width: 50%;
+    height: 1120px;
+}
+#left-text{
+    color: #ADEFD1FF;
+    
+}
+#right-text{
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ;
+    font-size: 25px;
+    margin-top: 400px;
+    margin-left: 25px;
+    color: #00203FFF;
+}
+#blue-color{
+    color: #00203FFF;
+}
+</style>
+
+<body>
+
+
+    <div id="left-container">
+        <div>
+            <h1 id='left-text'>Some Description and logo here</h1>
+        </div>
+    </div>
+        <div id='right-container'>
+        {% if user.is_authenticated == False %}
+        <div id='right-text'>       
+            <h2>Start using rembr for free <a id="blue-color" href="{% url 'signup' %}">HERE</a></h2>
+            <h2>or login <a id="blue-color" href="{% url 'signin' %}">HERE</a></h2>
+        </div>
+        {% else %}
+            <div>
+                <p style="font-size: 20;font-family:monospace ;">View profile <a href="{% url 'profilepage' request.user.id %}">here</a></p>
+                <a href="{% url 'signout' %}">Sign user out</aSign user out>
+            </div>
+        {% endif%}
+        </div>
+    
+</body>
+</html>
